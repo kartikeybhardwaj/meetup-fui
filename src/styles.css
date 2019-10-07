@@ -1,4 +1,231 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+p,
+span,
+h1 {
+  margin: 0;
+}
+
+a {
+  color: #6aabd1;
+  text-decoration: none;
+}
+
+.page {
+  padding-bottom: 56px;
+}
+
+.bottomNavigation {
+  height: 56px;
+}
+
+.zeroMargin {
+  margin: 0 !important;
+}
+
+.zeroPadding {
+  padding: 0 !important;
+}
+
+.smallMarginTop {
+  margin-top: 1em !important;
+}
+
+.smallMarginRight {
+  margin-right: 1em !important;
+}
+
+.smallMarginBottom {
+  margin-bottom: 1em !important;
+}
+
+.smallMarginLeft {
+  margin-left: 1em !important;
+}
+
+.mediumMarginTop {
+  margin-top: 2em !important;
+}
+
+.mediumMarginRight {
+  margin-right: 2em !important;
+}
+
+.mediumMarginBottom {
+  margin-bottom: 2em !important;
+}
+
+.mediumMarginLeft {
+  margin-left: 2em !important;
+}
+
+.largeMarginTop {
+  margin-top: 3em !important;
+}
+
+.largeMarginRight {
+  margin-right: 3em !important;
+}
+
+.largeMarginBottom {
+  margin-bottom: 3em !important;
+}
+
+.largeMarginLeft {
+  margin-left: 3em !important;
+}
+
+.smallPaddingTop {
+  padding-top: 1em !important;
+}
+
+.smallPaddingRight {
+  padding-right: 1em !important;
+}
+
+.smallPaddingBottom {
+  padding-bottom: 1em !important;
+}
+
+.smallPaddingLeft {
+  padding-left: 1em !important;
+}
+
+.mediumPaddingTop {
+  padding-top: 2em !important;
+}
+
+.mediumPaddingRight {
+  padding-right: 2em !important;
+}
+
+.mediumPaddingBottom {
+  padding-bottom: 2em !important;
+}
+
+.mediumPaddingLeft {
+  padding-left: 2em !important;
+}
+
+.largePaddingTop {
+  padding-top: 3em !important;
+}
+
+.largePaddingRight {
+  padding-right: 3em !important;
+}
+
+.largePaddingBottom {
+  padding-bottom: 3em !important;
+}
+
+.largePaddingLeft {
+  padding-left: 3em !important;
+}
+
+.inlineBlock {
+  display: inline-block !important;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.contentCenter {
+  display: flex;
+  margin: 1em auto;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.colorWhite {
+  color: white;
+}
+
+.colorBlack {
+  color: black;
+}
+
+.colorGray {
+  color: gray;
+}
+
+.icon-display {
+  transform: scale(1.5);
+}
+
+svg#clouds {
+  position: fixed;
+  bottom: -160px;
+  left: -230px;
+  z-index: -10;
+  width: 1920px;
+}
+
+.terminalBot {
+  color: #d1906a;
+}
+
+.terminalUser {
+  color: #a7af34;
+}
+
+.terminal {
+  position: relative;
+  width: 80%;
+  max-width: 960px;
+  border-radius: 6px;
+  padding-top: 45px;
+  margin-top: 8px;
+  overflow: hidden;
+  background-color: rgb(15, 15, 16);
+}
+
+.terminal::before {
+  content: "\2022 \2022 \2022";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: rgb(58, 58, 58);
+  color: #c2c3c4;
+  width: 100%;
+  font-size: 2rem;
+  line-height: 0;
+  padding: 14px 0;
+  text-indent: 4px;
+}
+
+.terminal pre {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  color: white;
+  padding: 0 1rem 1rem;
+  margin: 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .terminal {
+    width: 100%;
+  }
+}
+
+.matProgressSpinner {
+  margin-top: 50px !important;
+}
