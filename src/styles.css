@@ -20,12 +20,35 @@ a {
   text-decoration: none;
 }
 
+.transparentInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #a7af34;
+  font-size: 14px;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+}
+
+.overflowHiddenBlock {
+  display: block !important;
+  overflow: hidden;
+}
+
 .page {
   padding-bottom: 56px;
 }
 
 .bottomNavigation {
   height: 56px;
+}
+
+.floatRight {
+  float: right;
+}
+
+.floatLeft {
+  float: left;
 }
 
 .zeroMargin {
@@ -179,6 +202,10 @@ svg#clouds {
 
 .terminalUser {
   color: #a7af34;
+}
+
+.terminalBotError {
+  color: #ff6666;
 }
 
 .terminal {
