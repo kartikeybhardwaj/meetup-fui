@@ -2,6 +2,12 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import {
+  Router
+} from '@angular/router';
+import {
+  AppStorageService
+} from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +16,22 @@ import {
 })
 export class AppComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    public appInfo: AppStorageService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getUser();
+  }
+
+  getUser() {
+    // get user data and set to appInfo.user
+    this.appInfo.user = {
+      username: 'kartoon',
+      displayname: 'kartoon'
+    };
+    this.router.navigate(['add']);
+  }
 
 }
