@@ -256,3 +256,42 @@ svg#clouds {
 .matProgressSpinner {
   margin-top: 50px !important;
 }
+
+.mat-form-field-infix {
+  padding: 0;
+  border-top: 0;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding: 0;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 0;
+}
+
+.mat-form-field, .mat-option, .mat-calendar {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+}
+
+.mat-input-element {
+  caret-color: #a7af34;
+  color: #a7af34 !important;
+}
+
+.mat-form-field-underline {
+  display: none;
+}
+
+.mat-select-value {
+  color: #a7af34;
+}
+
+.mat-select-arrow {
+  visibility: hidden;
+}
+
+agm-map {
+  height: 300px;
+  width: 100%;
+}
