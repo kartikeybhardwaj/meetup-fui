@@ -1,0 +1,26 @@
+<div class="contentCenter">
+  <!-- start - terminal -->
+  <div class="terminal">
+    <pre><span class="floatLeft">Title: </span><span class="overflowHiddenBlock"><input type="text" class="transparentInput"></span></pre>
+    <div style="height: 6px;"></div>
+    <pre><span class="floatLeft">Description: </span><span class="overflowHiddenBlock"><textarea id="description" class="transparentInput zeroPadding" cdkTextareaAutosize></textarea></span></pre>
+    <pre><span>Start date: </span><mat-form-field><input matInput [matDatepicker]="startpicker" disabled><mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle><mat-datepicker #startpicker disabled="false"></mat-datepicker></mat-form-field></pre>
+    <div style="height: 3px;"></div>
+    <pre><span>Start hour: </span><mat-form-field><mat-select [(value)]="startHour"><mat-option *ngFor="let hour of hours; index as index;" [value]="hour">{{hour}}</mat-option></mat-select></mat-form-field></pre>
+    <div style="height: 8px;"></div>
+    <pre><span>Start minute: </span><mat-form-field><mat-select [(value)]="startMinute"><mat-option *ngFor="let minute of minutes; index as index;" [value]="minute">{{minute}}</mat-option></mat-select></mat-form-field></pre>
+    <div style="height: 3px;"></div>
+    <pre><span>End date: </span><mat-form-field><input matInput [matDatepicker]="endpicker" disabled><mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle><mat-datepicker #endpicker disabled="false"></mat-datepicker></mat-form-field></pre>
+    <div style="height: 3px;"></div>
+    <pre><span>End hour: </span><mat-form-field><mat-select [(value)]="endHour"><mat-option *ngFor="let hour of hours; index as index;" [value]="hour">{{hour}}</mat-option></mat-select></mat-form-field></pre>
+    <div style="height: 8px;"></div>
+    <pre><span>End minute: </span><mat-form-field><mat-select [(value)]="endMinute"><mat-option *ngFor="let minute of minutes; index as index;" [value]="minute">{{minute}}</mat-option></mat-select></mat-form-field></pre>
+    <div style="height: 3px;"></div>
+    <pre><span>Is this meet-up private: </span> <mat-slide-toggle [checked]="isPrivate"></mat-slide-toggle></pre>
+    <div style="height: 3px;"></div>
+    <pre><a>Create meet-up</a> <span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <div style="height: 3px;"></div>
+    <pre><span class="terminalBotError">meetup:</span> Something bad happened, please check back later</pre>
+  </div>
+  <!-- end - terminal -->
+</div>
