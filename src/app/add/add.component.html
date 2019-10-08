@@ -18,6 +18,8 @@
     <div style="height: 3px;"></div>
     <pre><span>Is this meet-up private: </span> <mat-slide-toggle [checked]="isPrivate"></mat-slide-toggle></pre>
     <div style="height: 3px;"></div>
+    <pre><span>Location (optional): </span>{{mapLat ? (mapTitle + '\nCountry: ' + mapCountry + '\nLatitude: ' + mapLat + '\nLongitude: ' + mapLng) : ''}} <a class="cursorPointer" (click)="openMapDialog()">{{mapLat ? 'edit' : 'select'}}</a> <a class="cursorPointer" (click)="removeMap()">{{mapLat ? 'remove' : ''}}</a></pre>
+    <div style="height: 3px;"></div>
     <pre><a>Create meet-up</a> <span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
     <div style="height: 3px;"></div>
     <pre><span class="terminalBotError">meetup:</span> Something bad happened, please check back later</pre>

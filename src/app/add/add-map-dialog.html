@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Search location:
+  <span>
+    <input type="text" class="transparentInput" (keydown.enter)="$event.preventDefault()" placeholder="search.."
+      autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+  </span>
+</h1>
+<agm-map [latitude]="data.lat" [longitude]="data.lng" [zoom]="15">
+  <agm-marker [latitude]="data.lat" [longitude]="data.lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
+  </agm-marker>
+</agm-map>
+<div mat-dialog-title class="smallMarginTop">
+  Address to be displayed:
+  <span>
+    <mat-progress-spinner *ngIf="isFetchingName" class="inlineBlock" color="primary" mode="indeterminate"
+      [diameter]="14">
+    </mat-progress-spinner>
+  </span>
+  <span>
+    <input type="text" class="transparentInput" [(ngModel)]="data.title" (keydown.enter)="$event.preventDefault()"
+      autocorrect="off" autocapitalize="off" spellcheck="off" type="text">
+  </span>
+</div>

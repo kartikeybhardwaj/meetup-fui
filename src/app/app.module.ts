@@ -40,7 +40,12 @@ import {
 import {
   MatSelectModule
 } from '@angular/material/select';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {
+  MatSlideToggleModule
+} from '@angular/material/slide-toggle';
+import {
+  FormsModule
+} from '@angular/forms';
 
 import {
   AppRoutingModule
@@ -86,7 +91,8 @@ import {
   DescriptionMapDialog
 } from './description/description.component';
 import {
-  AddComponent
+  AddComponent,
+  AddMapDialog
 } from './add/add.component';
 
 @NgModule({
@@ -101,6 +107,7 @@ import {
     LiveComponent,
     PreviousComponent,
     AllComponent,
+    AddMapDialog,
     DescriptionComponent,
     DescriptionMapDialog,
     AddComponent
@@ -110,7 +117,8 @@ import {
     AppRoutingModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: '',
+      libraries: ['places']
     }),
     MatButtonModule,
     MatIconModule,
@@ -123,13 +131,15 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FormsModule
   ],
   providers: [
     AppStorageService,
     MatDatepickerModule
   ],
   entryComponents: [
+    AddMapDialog,
     DescriptionMapDialog
   ],
   bootstrap: [AppComponent]

@@ -17,7 +17,7 @@ import {
   MatDialog
 } from '@angular/material/dialog';
 
-export interface DialogData {
+export interface DescriptionDialogData {
   title: string;
   lat: number;
   lng: number;
@@ -60,8 +60,8 @@ export class DescriptionComponent implements OnInit {
       minWidth: '80%',
       data: {
         title: 'this is title for place, bla bla bla bla bla',
-        lat: 51.678418,
-        lng: 7.809007
+        lat: 12.3600387,
+        lng: 76.590705
       }
     });
 
@@ -83,7 +83,7 @@ export class DescriptionMapDialog {
 
   constructor(
     public dialogRef: MatDialogRef < DescriptionMapDialog > ,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: DescriptionDialogData
   ) {}
 
   closeDialog(): void {
