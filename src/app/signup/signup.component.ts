@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  AppStorageService
+} from '../app.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,9 +13,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private appInfo: AppStorageService
+  ) {
+    appInfo.headerText = 'Signup';
   }
+
+  ngOnInit() {}
 
 }

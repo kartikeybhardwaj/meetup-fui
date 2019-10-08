@@ -2,6 +2,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import {
+  AppStorageService
+} from '../app.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +13,11 @@ import {
 })
 export class LoginComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    private appInfo: AppStorageService
+  ) {
+    appInfo.headerText = 'Login';
+  }
 
   ngOnInit() {}
 
