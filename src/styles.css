@@ -20,6 +20,12 @@ a {
   text-decoration: none;
 }
 
+a.disabled {
+  color: #87bbda;
+  pointer-events: none;
+  cursor: default;
+}
+
 .transparentInput {
   background: transparent;
   border: none;
@@ -270,7 +276,9 @@ svg#clouds {
   padding: 0;
 }
 
-.mat-form-field, .mat-option, .mat-calendar {
+.mat-form-field,
+.mat-option,
+.mat-calendar {
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 }
 
