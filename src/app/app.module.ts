@@ -4,6 +4,9 @@ import {
 import {
   NgModule
 } from '@angular/core';
+import {
+  HttpClientModule
+} from '@angular/common/http';
 
 import {
   AgmCoreModule
@@ -116,6 +119,7 @@ import {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: '',
       libraries: ['places']
