@@ -64,6 +64,10 @@ const routes: Routes = [{
   path: 'unauthorized-access',
   component: UnauthorizedAccessComponent
 }, {
+  path: '',
+  redirectTo: '/all',
+  pathMatch: 'full'
+}, {
   path: '**',
   component: PageNotFoundComponent
 }];
