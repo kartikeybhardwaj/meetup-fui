@@ -6,14 +6,25 @@
 </svg>
 <!-- end - clouds -->
 
-<ng-container *ngIf="appInfo.user === null">
+<ng-container *ngIf="appInfo.isUnauthorized">
   <app-unauthorized-access></app-unauthorized-access>
 </ng-container>
 
-<ng-container *ngIf="appInfo.user">
+<ng-container *ngIf="isVerifyingToken">
+  <app-header></app-header>
+  <div class="contentCenter">
+    <!-- start - terminal -->
+    <div class="terminal">
+      <pre><span class="terminalBot">meetup:</span> I'm gathering some data.. This should be quick! <span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    </div>
+    <!-- end - terminal -->
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!appInfo.isUnauthorized && !isVerifyingToken">
   <app-header></app-header>
   <div class="page">
     <router-outlet></router-outlet>
   </div>
-  <!-- <app-navigation-panel></app-navigation-panel> -->
+  <!-- <app-navigation-panel *ngIf="appInfo.user"></app-navigation-panel> -->
 </ng-container>
