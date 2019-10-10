@@ -16,7 +16,7 @@ export class AllComponent implements OnInit {
   constructor(
     private appInfo: AppStorageService
   ) {
-    appInfo.headerText = 'All';
+    appInfo.headerText = 'Home';
   }
 
   ngOnInit() {}

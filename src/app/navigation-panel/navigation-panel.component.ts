@@ -57,6 +57,7 @@ export class BottomSheetMenu {
   }
 
   logout(): void {
+    this.dissmissBottomSheet();
     this.appInfo.user = null;
     this.appInfo.localStorage.removeItem('meetupToken');
     this.router.navigate(['login']);

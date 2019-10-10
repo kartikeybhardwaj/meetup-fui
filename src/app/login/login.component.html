@@ -4,8 +4,8 @@
     <pre>What is MeetUp?</pre>
     <pre><span class="terminalBot">meetup:</span> I'm a small platform to create and register to a meet-up (public or private).</pre>
     <pre><span class="terminalBot">meetup:</span> Let's get you logged in.</pre>
-    <pre><span class="floatLeft">username: </span><span class="overflowHiddenBlock"><input type="text" class="transparentInput" [(ngModel)]="username"></span></pre>
-    <pre><span class="floatLeft">password: </span><span class="overflowHiddenBlock"><input type="password" class="transparentInput" [(ngModel)]="password"></span></pre>
+    <pre><span class="floatLeft">username: </span><span class="overflowHiddenBlock"><input type="text" class="transparentInput" [(ngModel)]="username" (keyup.enter)="login()"></span></pre>
+    <pre><span class="floatLeft">password: </span><span class="overflowHiddenBlock"><input type="password" class="transparentInput" [(ngModel)]="password" (keyup.enter)="login()"></span></pre>
     <pre><a class="cursorPointer" [ngClass]="isLoggingIn ? 'disabled' : ''" (click)="login()">Login</a> <span *ngIf="isLoggingIn" class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
     <pre *ngIf="errorMessage.length"><span class="terminalBotError">meetup:</span> {{errorMessage}}</pre>
     <pre *ngIf="message.length"><span class="terminalBot">meetup:</span> {{message}}</pre>

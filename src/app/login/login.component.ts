@@ -5,7 +5,13 @@ import {
 import {
   AppStorageService
 } from '../app.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders
+} from '@angular/common/http';
+import {
+  Router
+} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,12 +28,18 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private appInfo: AppStorageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     appInfo.headerText = 'Login';
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const localStorageMeetupToken = this.appInfo.localStorage.getItem('meetupToken');
+    if (localStorageMeetupToken) {
+      this.router.navigate(['home']);
+    }
+  }
 
   validateLogin(): boolean {
     let success = false;
@@ -60,6 +72,7 @@ export class LoginComponent implements OnInit {
                 })
               };
               this.appInfo.localStorage.setItem('meetupToken', 'Bearer ' + response.token);
+              this.router.navigate(['home']);
             } else if (response.message) {
               this.errorMessage = response.message;
             }
