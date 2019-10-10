@@ -46,6 +46,9 @@ const routes: Routes = [{
   path: 'add',
   component: AddComponent
 }, {
+  path: 'home',
+  component: AllComponent
+}, {
   path: 'all',
   component: AllComponent
 }, {
@@ -65,7 +68,7 @@ const routes: Routes = [{
   component: UnauthorizedAccessComponent
 }, {
   path: '',
-  redirectTo: '/all',
+  redirectTo: '/home',
   pathMatch: 'full'
 }, {
   path: '**',
