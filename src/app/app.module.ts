@@ -101,6 +101,15 @@ import {
   NavigationPanelComponent,
   BottomSheetMenu
 } from './navigation-panel/navigation-panel.component';
+import {
+  LiveStorageService
+} from './live/live.service';
+import {
+  UpcomingStorageService
+} from './upcoming/upcoming.service';
+import {
+  PreviousStorageService
+} from './previous/previous.service';
 
 @NgModule({
   declarations: [
@@ -146,6 +155,9 @@ import {
   ],
   providers: [
     AppStorageService,
+    LiveStorageService,
+    UpcomingStorageService,
+    PreviousStorageService,
     MatDatepickerModule
   ],
   entryComponents: [
