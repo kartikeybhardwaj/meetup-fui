@@ -35,6 +35,9 @@ import {
 import {
   AddComponent
 } from './add/add.component';
+import {
+  MyComponent
+} from './my/my.component';
 
 const routes: Routes = [{
   path: 'login',
@@ -60,6 +63,9 @@ const routes: Routes = [{
 }, {
   path: 'upcoming',
   component: UpcomingComponent
+}, {
+  path: 'my-meetups',
+  component: MyComponent
 }, {
   path: 'description/:id',
   component: DescriptionComponent
