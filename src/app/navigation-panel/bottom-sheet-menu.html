@@ -1,0 +1,26 @@
+<mat-list>
+  <h3 mat-subheader>Projects</h3>
+  <mat-nav-list>
+    <a class="mediumPaddingLeft" mat-list-item (click)="goto('all')">
+      <mat-icon mat-list-icon>home</mat-icon>
+      <h4 mat-line>All meetups</h4>
+    </a>
+    <a class="mediumPaddingLeft" mat-list-item (click)="goto('live')">
+      <mat-icon mat-list-icon>group_work</mat-icon>
+      <h4 mat-line>Live meetups</h4>
+    </a>
+    <a class="mediumPaddingLeft" mat-list-item (click)="goto('upcoming')">
+      <mat-icon mat-list-icon>hourglass_full</mat-icon>
+      <h4 mat-line>Upcoming meetups</h4>
+    </a>
+    <a class="mediumPaddingLeft" mat-list-item (click)="goto('previous')">
+      <mat-icon mat-list-icon>history</mat-icon>
+      <h4 mat-line>Previous meetups</h4>
+    </a>
+    <a class="mediumPaddingLeft" mat-list-item (click)="logout()">
+      <mat-icon mat-list-icon>power_settings_new</mat-icon>
+      <h4 mat-line>Logout</h4>
+    </a>
+  </mat-nav-list>
+  <mat-divider></mat-divider>
+</mat-list>
