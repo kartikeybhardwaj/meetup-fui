@@ -18,8 +18,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public appInfo: AppStorageService
   ) {
-    const thisDate = new Date().toString();
-    this.today = thisDate.substr(0, 3) + ',' + thisDate.substr(3, 7);
+    this.today = appInfo.getShortDate(new Date().getTime());
   }
 
   ngOnInit() {}

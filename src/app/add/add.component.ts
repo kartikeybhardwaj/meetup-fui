@@ -149,14 +149,14 @@ export class AddComponent implements OnInit {
         longitude: this.mapLng
       },
       timeline: {
-        from: startDateTime.toISOString(),
-        to: endDateTime.toISOString()
+        from: startDateTime,
+        to: endDateTime
       },
       isPrivate: this.isPrivate,
       joinedBy: [this.appInfo.user._id.$oid],
       metadata: {
         createdBy: this.appInfo.user._id.$oid,
-        createdOn: new Date().toISOString()
+        createdOn: new Date()
       }
     };
   }

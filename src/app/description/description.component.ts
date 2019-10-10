@@ -72,20 +72,34 @@ export class DescriptionComponent implements OnInit {
           if (response && response.responseId) {
             if (response.responseId === 211) {
               this.description = response.returnData;
-              this.description.timeline.from = new Date(this.description.timeline.from).toString();
+              this.descriptionExtras.peopleRegistered = this.description.joinedBy.length;
+              this.descriptionExtras.isRegistrationOpen = true;
+              this.descriptionExtras.tense = 'people are attending';
+              if (this.descriptionExtras.peopleRegistered === 1) {
+                this.descriptionExtras.tense = 'person is attending';
+              }
+              if (new Date().getTime() > new Date(this.description.timeline.to.$date).getTime()) {
+                this.descriptionExtras.isRegistrationOpen = false;
+                this.descriptionExtras.tense = 'people attended';
+                if (this.descriptionExtras.peopleRegistered === 1) {
+                  this.descriptionExtras.tense = 'person attended';
+                }
+              }
+              this.descriptionExtras.amIGoing = this.description.joinedBy.map((user) => {
+                return user.$oid === this.appInfo.user._id.$oid;
+              }).includes(true);
+              this.description.timeline.from = new Date(this.description.timeline.from.$date).toString();
+              this.description.timeline.from = this.description.timeline.from.toString();
               this.description.timeline.from =
                 this.description.timeline.from.substr(0, 3) + ',' +
                 this.description.timeline.from.substr(3, 7) + ', ' +
                 this.description.timeline.from.substr(16, 5);
-              this.description.timeline.to = new Date(this.description.timeline.to).toString();
+              this.description.timeline.to = new Date(this.description.timeline.to.$date).toString();
+              this.description.timeline.to = this.description.timeline.to.toString();
               this.description.timeline.to =
                 this.description.timeline.to.substr(0, 3) + ',' +
                 this.description.timeline.to.substr(3, 7) + ', ' +
                 this.description.timeline.to.substr(16, 5);
-              this.descriptionExtras.peopleRegistered = this.description.joinedBy.length;
-              this.descriptionExtras.amIGoing = this.description.joinedBy.map((user) => {
-                return user.$oid === this.appInfo.user._id.$oid;
-              }).includes(true);
               this.appInfo.headerText = this.description.title;
             } else if (response.message) {
               this.errorMessageFetching = response.message;
@@ -118,6 +132,7 @@ export class DescriptionComponent implements OnInit {
           if (response.responseId === 211) {
             this.descriptionExtras.amIGoing = true;
             this.descriptionExtras.peopleRegistered += 1;
+            this.descriptionExtras.tense = 'people are attending';
           } else if (response.message) {
             this.errorMessage = response.message;
           }
@@ -171,13 +186,13 @@ export interface MeetupLocation {
 }
 
 export interface MeetupTimeline {
-  from: string;
-  to: string;
+  from: any;
+  to: any;
 }
 
 export interface MeetupMetadata {
   createdBy: any;
-  createdOn: string;
+  createdOn: any;
 }
 
 @Component({

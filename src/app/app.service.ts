@@ -23,6 +23,10 @@ export class AppStorageService {
 
   localStorage: any = null;
 
+  liveMeetups: any = null;
+  upcomingMeetups: any = null;
+  previousMeetups: any = null;
+
   headerText = 'MeetUp';
 
   constructor() {
@@ -36,6 +40,11 @@ export class AppStorageService {
 
   encryptWithoutNumber(password): string {
     return crypto.SHA256(password).toString(crypto.enc.Base64);
+  }
+
+  getShortDate(date: number): string {
+    const thisDate = new Date(date).toString();
+    return thisDate.substr(0, 3) + ',' + thisDate.substr(3, 7);
   }
 
 }

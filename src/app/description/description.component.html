@@ -7,11 +7,11 @@
   <!-- end - terminal fetching -->
   <!-- start - terminal -->
   <div class="terminal" *ngIf="!isFetchingDescription && !errorMessageFetching.length">
-    <pre>{{description.title}}</pre>
+    <pre><span class="terminalBot">{{description.title}}</span></pre>
     <pre>{{description.timeline.from}} - {{description.timeline.to}}</pre>
     <pre>{{description.description}}</pre>
     <pre><span class="terminalBot">Location:</span> <span *ngIf="!description.location.title.length">not specified</span><a class="cursorPointer" (click)="openMapDialog()" *ngIf="description.location.title.length">view on map</a></pre>
-    <pre>{{descriptionExtras.peopleRegistered}} people are going, <span *ngIf="descriptionExtras.amIGoing">me too!</span><a class="cursorPointer" [ngClass]="isRegistering ? 'disabled' : ''" *ngIf="!descriptionExtras.amIGoing" (click)="register()">register me <span class="inlineBlock" *ngIf="isRegistering"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></a></pre>
+    <pre>{{descriptionExtras.peopleRegistered}} {{descriptionExtras.tense}}<span *ngIf="descriptionExtras.amIGoing">, me too!</span><a class="cursorPointer" [ngClass]="isRegistering ? 'disabled' : ''" *ngIf="!descriptionExtras.amIGoing && descriptionExtras.isRegistrationOpen" (click)="register()">, register me <span class="inlineBlock" *ngIf="isRegistering"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></a></pre>
     <pre *ngIf="errorMessage.length"><span class="terminalBotError">meetup:</span> {{errorMessage}}</pre>
     <pre *ngIf="message.length"><span class="terminalBot">meetup:</span> {{message}}</pre>
   </div>
