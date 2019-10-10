@@ -97,6 +97,10 @@ import {
   AddComponent,
   AddMapDialog
 } from './add/add.component';
+import {
+  NavigationPanelComponent,
+  BottomSheetMenu
+} from './navigation-panel/navigation-panel.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +117,9 @@ import {
     AddMapDialog,
     DescriptionComponent,
     DescriptionMapDialog,
-    AddComponent
+    AddComponent,
+    NavigationPanelComponent,
+    BottomSheetMenu
   ],
   imports: [
     BrowserModule,
@@ -144,7 +150,8 @@ import {
   ],
   entryComponents: [
     AddMapDialog,
-    DescriptionMapDialog
+    DescriptionMapDialog,
+    BottomSheetMenu
   ],
   bootstrap: [AppComponent]
 })

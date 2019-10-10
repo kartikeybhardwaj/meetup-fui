@@ -1,0 +1,18 @@
+<div class="bottomNavigation">
+
+  <div matRipple [matRippleColor]="'#EEEEEE'" [matRippleUnbounded]="true" class="bottomLeftNavigation cursorPointer"
+    (click)="openMenuBottomSheet()">
+    <mat-icon class="icon-display colorGray">menu</mat-icon>
+  </div>
+
+  <div class="bottomCenterNavigation">
+    <button matRipple mat-fab (click)="gotoAddMeetup()">
+      <mat-icon class="icon-display colorWhite">add</mat-icon>
+    </button>
+  </div>
+
+  <div matRipple [matRippleColor]="'#EEEEEE'" [matRippleUnbounded]="true" class="bottomRightNavigation cursorPointer">
+    <mat-icon class="icon-display colorGray">more_vert</mat-icon>
+  </div>
+
+</div>
