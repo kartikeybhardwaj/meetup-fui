@@ -16,6 +16,9 @@ import {
   MAT_DIALOG_DATA,
   MatDialog
 } from '@angular/material/dialog';
+import {
+  HttpClient
+} from '@angular/common/http';
 
 export interface DescriptionDialogData {
   title: string;
@@ -30,6 +33,12 @@ export interface DescriptionDialogData {
 })
 export class DescriptionComponent implements OnInit {
 
+  isFetchingDescription = false;
+  description: Meetup;
+  descriptionExtras: any = {};
+
+  errorMessageFetching = '';
+
   private activatedRouteSnapshot: ActivatedRouteSnapshot;
   private selectedId: any = null;
 
@@ -37,7 +46,8 @@ export class DescriptionComponent implements OnInit {
     public appInfo: AppStorageService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    public mapDialog: MatDialog
+    public mapDialog: MatDialog,
+    private http: HttpClient
   ) {
     this.activatedRouteSnapshot = activatedRoute.snapshot;
     if (this.activatedRouteSnapshot.params && this.activatedRouteSnapshot.params.id) {
@@ -49,8 +59,47 @@ export class DescriptionComponent implements OnInit {
     if (this.selectedId === null) {
       this.router.navigate(['page-not-found']);
     } else {
-      this.appInfo.headerText = 'meetup title';
+      this.errorMessageFetching = '';
+      this.isFetchingDescription = true;
+      const reqUrl = 'http://localhost:3200/get-meetup';
+      const reqPayload = JSON.stringify(this.generateGetDescriptionRequestObject());
+      this.http.post(reqUrl, reqPayload, this.appInfo.headersWithAuth).subscribe(
+        (response: any) => {
+          this.isFetchingDescription = false;
+          if (response && response.responseId) {
+            if (response.responseId === 211) {
+              this.description = response.returnData;
+              this.description.timeline.from = new Date(this.description.timeline.from).toString();
+              this.description.timeline.from =
+                this.description.timeline.from.substr(0, 3) + ',' +
+                this.description.timeline.from.substr(3, 7) + ', ' +
+                this.description.timeline.from.substr(16, 5);
+              this.description.timeline.to = new Date(this.description.timeline.to).toString();
+              this.description.timeline.to =
+                this.description.timeline.to.substr(0, 3) + ',' +
+                this.description.timeline.to.substr(3, 7) + ', ' +
+                this.description.timeline.to.substr(16, 5);
+              this.descriptionExtras.peopleRegistered = this.description.joinedBy.length;
+              this.descriptionExtras.amIGoing = this.description.joinedBy.map((user) => {
+                return user.$oid === this.appInfo.user._id.$oid;
+              }).includes(true);
+              this.appInfo.headerText = this.description.title;
+            } else if (response.message) {
+              this.errorMessageFetching = response.message;
+            }
+          }
+        },
+        (error: any) => {
+          this.isFetchingDescription = false;
+          this.errorMessageFetching = 'some error occurred';
+        });
     }
+  }
+
+  generateGetDescriptionRequestObject() {
+    return {
+      _id: this.selectedId
+    };
   }
 
   openMapDialog(): void {
@@ -59,18 +108,43 @@ export class DescriptionComponent implements OnInit {
       maxWidth: '100%',
       minWidth: '80%',
       data: {
-        title: 'this is title for place, bla bla bla bla bla',
-        lat: 12.3600387,
-        lng: 76.590705
+        title: this.description.location.title,
+        lat: this.description.location.latitude,
+        lng: this.description.location.longitude
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-    });
+    dialogRef.afterClosed().subscribe(result => {});
   }
 
+}
+
+export interface Meetup {
+  _id: any;
+  title: string;
+  description: string;
+  location: MeetupLocation;
+  timeline: MeetupTimeline;
+  isPrivate: boolean;
+  joinedBy: any[];
+  metadata: MeetupMetadata;
+}
+
+export interface MeetupLocation {
+  title: string;
+  country: string;
+  latitude: any;
+  longitude: any;
+}
+
+export interface MeetupTimeline {
+  from: string;
+  to: string;
+}
+
+export interface MeetupMetadata {
+  createdBy: any;
+  createdOn: string;
 }
 
 @Component({
