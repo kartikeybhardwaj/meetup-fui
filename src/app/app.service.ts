@@ -26,6 +26,8 @@ export class AppStorageService {
   liveMeetups: any = null;
   upcomingMeetups: any = null;
   previousMeetups: any = null;
+  myCreatedMeetups: any = null;
+  myJoinedMeetups: any = null;
 
   headerText = 'MeetUp';
 

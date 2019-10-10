@@ -1,5 +1,5 @@
 <mat-list>
-  <h3 mat-subheader>Projects</h3>
+  <h3 mat-subheader>Goto</h3>
   <mat-nav-list>
     <a class="mediumPaddingLeft" mat-list-item (click)="goto('all')">
       <mat-icon mat-list-icon>home</mat-icon>
@@ -17,10 +17,16 @@
       <mat-icon mat-list-icon>history</mat-icon>
       <h4 mat-line>Previous meetups</h4>
     </a>
+    <a class="mediumPaddingLeft" mat-list-item (click)="goto('my-meetups')">
+      <mat-icon mat-list-icon>assignment_ind</mat-icon>
+      <h4 mat-line>My meetups</h4>
+    </a>
+  </mat-nav-list>
+  <mat-divider></mat-divider>
+  <mat-nav-list>
     <a class="mediumPaddingLeft" mat-list-item (click)="logout()">
       <mat-icon mat-list-icon>power_settings_new</mat-icon>
       <h4 mat-line>Logout</h4>
     </a>
   </mat-nav-list>
-  <mat-divider></mat-divider>
 </mat-list>

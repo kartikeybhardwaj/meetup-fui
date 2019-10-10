@@ -9,8 +9,7 @@
       *ngIf="liveInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{liveInfo.errorMessage}}</pre>
     <ng-container *ngIf="appInfo.liveMeetups">
       <pre
-        *ngFor="let meetup of appInfo.liveMeetups.slice(0, 4); index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span></pre>
-      <pre *ngIf="appInfo.liveMeetups.length > 4"><a routerLink="../live">more</a></pre>
+        *ngFor="let meetup of appInfo.liveMeetups; index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span></pre>
     </ng-container>
   </div>
   <!-- end - terminal -->

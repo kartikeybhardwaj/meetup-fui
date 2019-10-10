@@ -9,8 +9,7 @@
       *ngIf="previousInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{previousInfo.errorMessage}}</pre>
     <ng-container *ngIf="appInfo.previousMeetups">
       <pre
-        *ngFor="let meetup of appInfo.previousMeetups.slice(0, 4); index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span> • {{appInfo.getShortDate(meetup.timeline.from.$date)}}</pre>
-      <pre *ngIf="appInfo.previousMeetups.length > 4"><a routerLink="../previous">more</a></pre>
+        *ngFor="let meetup of appInfo.previousMeetups; index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span> • {{appInfo.getShortDate(meetup.timeline.from.$date)}}</pre>
     </ng-container>
   </div>
   <!-- end - terminal -->
