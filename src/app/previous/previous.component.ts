@@ -5,6 +5,9 @@ import {
 import {
   AppStorageService
 } from '../app.service';
+import {
+  PreviousStorageService
+} from './previous.service';
 
 @Component({
   selector: 'app-previous',
@@ -14,7 +17,8 @@ import {
 export class PreviousComponent implements OnInit {
 
   constructor(
-    private appInfo: AppStorageService
+    public appInfo: AppStorageService,
+    public previousInfo: PreviousStorageService
   ) {
     appInfo.headerText = 'Previous';
   }

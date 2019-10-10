@@ -1,12 +1,17 @@
 <div class="contentCenter">
   <!-- start - terminal -->
   <div class="terminal">
-    <pre><span class="terminalBot">meetup:</span> Let me fetch recent previous meet-ups.. This should be quick! <span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
-    <pre><span class="terminalBot">meetup:</span> And here they are..</pre>
-    <pre>01. <a>This is a meetup title</a> (Singapore) - Oct 02, '19</pre>
-    <pre>02. <a>This is another meetup title</a> (New York) - Sep 25, '19</pre>
-    <pre>03. <a>This is just another meetup title</a> (Qatar) - Sep 18, '19</pre>
-    <pre>04. <a>This is just a meetup title</a> (Bengaluru) - Aug 21, '19</pre>
+    <pre><span class="terminalBot">PREVIOUS</span></pre>
+    <pre
+      *ngIf="previousInfo.isFetching"><span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre *ngIf="previousInfo.message.length"><span class="terminalBot">meetup:</span> {{previousInfo.message}}</pre>
+    <pre
+      *ngIf="previousInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{previousInfo.errorMessage}}</pre>
+    <ng-container *ngIf="appInfo.previousMeetups">
+      <pre
+        *ngFor="let meetup of appInfo.previousMeetups.slice(0, 4); index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span> • {{appInfo.getShortDate(meetup.timeline.from.$date)}}</pre>
+      <pre *ngIf="appInfo.previousMeetups.length > 4"><a routerLink="../previous">more</a></pre>
+    </ng-container>
   </div>
   <!-- end - terminal -->
 </div>
