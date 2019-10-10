@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     const localStorageMeetupToken = this.appInfo.localStorage.getItem('meetupToken');
-    console.log(localStorageMeetupToken);
     if (!localStorageMeetupToken) {
       this.router.navigate(['login']);
     } else {
