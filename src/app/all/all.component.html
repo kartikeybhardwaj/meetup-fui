@@ -1,37 +1,52 @@
 <div class="contentCenter">
   <!-- start - terminal -->
   <div class="terminal">
-    <pre><span class="terminalBot">meetup:</span> Heyo, let me fetch meet-ups.. This should be quick! <span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre><span class="terminalBot">meetup:</span> Heyo {{appInfo.user.displayname}}, welcome to MeetUp!</pre>
   </div>
   <!-- end - terminal -->
   <!-- start - terminal live -->
   <div class="terminal">
-    <pre><span class="terminalBot">LIVE:</span></pre>
-    <pre>01. <a>This is a meetup title</a> (Singapore)</pre>
-    <pre>02. <a>This is another meetup title</a> (New York)</pre>
-    <pre>03. <a>This is just another meetup title</a> (Qatar)</pre>
-    <pre>04. <a>This is just a meetup title</a> (Bengaluru)</pre>
-    <pre><a routerLink="../live">more</a></pre>
+    <pre><span class="terminalBot">LIVE</span></pre>
+    <pre
+      *ngIf="liveInfo.isFetching"><span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre *ngIf="liveInfo.message.length"><span class="terminalBot">meetup:</span> {{liveInfo.message}}</pre>
+    <pre
+      *ngIf="liveInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{liveInfo.errorMessage}}</pre>
+    <ng-container *ngIf="appInfo.liveMeetups">
+      <pre
+        *ngFor="let meetup of appInfo.liveMeetups.slice(0, 4); index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span></pre>
+      <pre *ngIf="appInfo.liveMeetups.length > 4"><a routerLink="../live">more</a></pre>
+    </ng-container>
   </div>
   <!-- end - terminal live -->
   <!-- start - terminal upcoming -->
   <div class="terminal">
-    <pre><span class="terminalBot">UPCOMING:</span></pre>
-    <pre>01. <a>This is a meetup title</a> (Singapore)</pre>
-    <pre>02. <a>This is another meetup title</a> (New York)</pre>
-    <pre>03. <a>This is just another meetup title</a> (Qatar)</pre>
-    <pre>04. <a>This is just a meetup title</a> (Bengaluru)</pre>
-    <pre><a routerLink="../upcoming">more</a></pre>
+    <pre><span class="terminalBot">UPCOMING</span></pre>
+    <pre
+      *ngIf="upcomingInfo.isFetching"><span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre *ngIf="upcomingInfo.message.length"><span class="terminalBot">meetup:</span> {{upcomingInfo.message}}</pre>
+    <pre
+      *ngIf="upcomingInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{upcomingInfo.errorMessage}}</pre>
+    <ng-container *ngIf="appInfo.upcomingMeetups">
+      <pre
+        *ngFor="let meetup of appInfo.upcomingMeetups.slice(0, 4); index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span> • {{appInfo.getShortDate(meetup.timeline.from.$date)}}</pre>
+      <pre *ngIf="appInfo.upcomingMeetups.length > 4"><a routerLink="../upcoming">more</a></pre>
+    </ng-container>
   </div>
   <!-- end - terminal upcoming -->
-  <!-- start - terminal live -->
+  <!-- start - terminal previous -->
   <div class="terminal">
-    <pre><span class="terminalBot">PREVIOUS:</span></pre>
-    <pre>01. <a>This is a meetup title</a> (Singapore)</pre>
-    <pre>02. <a>This is another meetup title</a> (New York)</pre>
-    <pre>03. <a>This is just another meetup title</a> (Qatar)</pre>
-    <pre>04. <a>This is just a meetup title</a> (Bengaluru)</pre>
-    <pre><a routerLink="../previous">more</a></pre>
+    <pre><span class="terminalBot">PREVIOUS</span></pre>
+    <pre
+      *ngIf="previousInfo.isFetching"><span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre *ngIf="previousInfo.message.length"><span class="terminalBot">meetup:</span> {{previousInfo.message}}</pre>
+    <pre
+      *ngIf="previousInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{previousInfo.errorMessage}}</pre>
+    <ng-container *ngIf="appInfo.previousMeetups">
+      <pre
+        *ngFor="let meetup of appInfo.previousMeetups.slice(0, 4); index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span> • {{appInfo.getShortDate(meetup.timeline.from.$date)}}</pre>
+      <pre *ngIf="appInfo.previousMeetups.length > 4"><a routerLink="../previous">more</a></pre>
+    </ng-container>
   </div>
-  <!-- end - terminal live -->
+  <!-- end - terminal previous -->
 </div>

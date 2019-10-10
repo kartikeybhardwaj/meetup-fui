@@ -5,6 +5,9 @@ import {
 import {
   AppStorageService
 } from '../app.service';
+import { LiveStorageService } from '../live/live.service';
+import { UpcomingStorageService } from '../upcoming/upcoming.service';
+import { PreviousStorageService } from '../previous/previous.service';
 
 @Component({
   selector: 'app-all',
@@ -14,11 +17,18 @@ import {
 export class AllComponent implements OnInit {
 
   constructor(
-    private appInfo: AppStorageService
+    public appInfo: AppStorageService,
+    public liveInfo: LiveStorageService,
+    public upcomingInfo: UpcomingStorageService,
+    public previousInfo: PreviousStorageService
   ) {
     appInfo.headerText = 'Home';
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.liveInfo.getLiveMeetups();
+    this.upcomingInfo.getUpcomingMeetups();
+    this.previousInfo.getPreviousMeetups();
+  }
 
 }
