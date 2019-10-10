@@ -110,6 +110,12 @@ import {
 import {
   PreviousStorageService
 } from './previous/previous.service';
+import {
+  MyStorageService
+} from './my/my.service';
+import {
+  MyComponent
+} from './my/my.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +129,7 @@ import {
     LiveComponent,
     PreviousComponent,
     AllComponent,
+    MyComponent,
     AddMapDialog,
     DescriptionComponent,
     DescriptionMapDialog,
@@ -158,6 +165,7 @@ import {
     LiveStorageService,
     UpcomingStorageService,
     PreviousStorageService,
+    MyStorageService,
     MatDatepickerModule
   ],
   entryComponents: [
