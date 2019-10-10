@@ -1,0 +1,30 @@
+<div class="contentCenter">
+  <!-- start - terminal created -->
+  <div class="terminal">
+    <pre><span class="terminalBot">MY CREATED MEETUPS</span></pre>
+    <pre
+      *ngIf="myInfo.createdIsFetching"><span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre *ngIf="myInfo.createdMessage.length"><span class="terminalBot">meetup:</span> {{myInfo.createdMessage}}</pre>
+    <pre
+      *ngIf="myInfo.createdErrorMessage.length"><span class="terminalBotError">meetup:</span> {{myInfo.createdErrorMessage}}</pre>
+    <ng-container *ngIf="appInfo.myCreatedMeetups">
+      <pre
+        *ngFor="let meetup of appInfo.myCreatedMeetups; index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span> • {{appInfo.getShortDate(meetup.timeline.from.$date)}}</pre>
+    </ng-container>
+  </div>
+  <!-- end - terminal created -->
+  <!-- start - terminal joined -->
+  <div class="terminal">
+    <pre><span class="terminalBot">MY JOINED MEETUPS</span></pre>
+    <pre
+      *ngIf="myInfo.joinedIsFetching"><span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre *ngIf="myInfo.joinedMessage.length"><span class="terminalBot">meetup:</span> {{myInfo.joinedMessage}}</pre>
+    <pre
+      *ngIf="myInfo.joinedErrorMessage.length"><span class="terminalBotError">meetup:</span> {{myInfo.joinedErrorMessage}}</pre>
+    <ng-container *ngIf="appInfo.myJoinedMeetups">
+      <pre
+        *ngFor="let meetup of appInfo.myJoinedMeetups; index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span> • {{appInfo.getShortDate(meetup.timeline.from.$date)}}</pre>
+    </ng-container>
+  </div>
+  <!-- end - terminal joined -->
+</div>
