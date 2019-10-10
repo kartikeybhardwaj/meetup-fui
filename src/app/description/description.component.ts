@@ -34,10 +34,13 @@ export interface DescriptionDialogData {
 export class DescriptionComponent implements OnInit {
 
   isFetchingDescription = false;
+  isRegistering = false;
   description: Meetup;
   descriptionExtras: any = {};
 
   errorMessageFetching = '';
+  errorMessage = '';
+  message = '';
 
   private activatedRouteSnapshot: ActivatedRouteSnapshot;
   private selectedId: any = null;
@@ -99,6 +102,36 @@ export class DescriptionComponent implements OnInit {
   generateGetDescriptionRequestObject() {
     return {
       _id: this.selectedId
+    };
+  }
+
+  register(): void {
+    this.message = '';
+    this.errorMessage = '';
+    this.isRegistering = true;
+    const reqUrl = 'http://localhost:3200/register-to-meetup';
+    const reqPayload = JSON.stringify(this.generateRegisterToMeetupRequestObject());
+    this.http.post(reqUrl, reqPayload, this.appInfo.headersWithAuth).subscribe(
+      (response: any) => {
+        this.isRegistering = false;
+        if (response && response.responseId) {
+          if (response.responseId === 211) {
+            this.descriptionExtras.amIGoing = true;
+            this.descriptionExtras.peopleRegistered += 1;
+          } else if (response.message) {
+            this.errorMessage = response.message;
+          }
+        }
+      },
+      (error: any) => {
+        this.isRegistering = false;
+        this.errorMessageFetching = 'some error occurred';
+      });
+  }
+
+  generateRegisterToMeetupRequestObject() {
+    return {
+      meetupId: this.selectedId
     };
   }
 
