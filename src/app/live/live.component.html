@@ -1,12 +1,17 @@
 <div class="contentCenter">
   <!-- start - terminal -->
   <div class="terminal">
-    <pre><span class="terminalBot">meetup:</span> Let me fetch all live meet-ups.. This should be quick! <span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
-    <pre><span class="terminalBot">meetup:</span> And here they are..</pre>
-    <pre>01. <a>This is a meetup title</a> (Singapore)</pre>
-    <pre>02. <a>This is another meetup title</a> (New York)</pre>
-    <pre>03. <a>This is just another meetup title</a> (Qatar)</pre>
-    <pre>04. <a>This is just a meetup title</a> (Bengaluru)</pre>
+    <pre><span class="terminalBot">LIVE</span></pre>
+    <pre
+      *ngIf="liveInfo.isFetching"><span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre *ngIf="liveInfo.message.length"><span class="terminalBot">meetup:</span> {{liveInfo.message}}</pre>
+    <pre
+      *ngIf="liveInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{liveInfo.errorMessage}}</pre>
+    <ng-container *ngIf="appInfo.liveMeetups">
+      <pre
+        *ngFor="let meetup of appInfo.liveMeetups.slice(0, 4); index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span></pre>
+      <pre *ngIf="appInfo.liveMeetups.length > 4"><a routerLink="../live">more</a></pre>
+    </ng-container>
   </div>
   <!-- end - terminal -->
 </div>

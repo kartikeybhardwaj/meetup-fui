@@ -5,6 +5,9 @@ import {
 import {
   AppStorageService
 } from '../app.service';
+import {
+  LiveStorageService
+} from './live.service';
 
 @Component({
   selector: 'app-live',
@@ -14,7 +17,8 @@ import {
 export class LiveComponent implements OnInit {
 
   constructor(
-    private appInfo: AppStorageService
+    public appInfo: AppStorageService,
+    public liveInfo: LiveStorageService
   ) {
     appInfo.headerText = 'Live';
   }
