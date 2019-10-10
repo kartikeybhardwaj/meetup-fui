@@ -25,10 +25,6 @@ export class AllComponent implements OnInit {
     appInfo.headerText = 'Home';
   }
 
-  ngOnInit() {
-    this.liveInfo.getLiveMeetups();
-    this.upcomingInfo.getUpcomingMeetups();
-    this.previousInfo.getPreviousMeetups();
-  }
+  ngOnInit() {}
 
 }

@@ -18,7 +18,9 @@ export class LiveStorageService {
   constructor(
     private appInfo: AppStorageService,
     private http: HttpClient
-  ) {}
+  ) {
+    this.getLiveMeetups();
+  }
 
   getLiveMeetups(): void {
     if (!this.appInfo.liveMeetups) {

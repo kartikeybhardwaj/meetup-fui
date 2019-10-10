@@ -5,7 +5,7 @@
     <mat-icon class="icon-display colorGray">menu</mat-icon>
   </div>
 
-  <div class="bottomCenterNavigation">
+  <div class="bottomCenterNavigation" *ngIf="appInfo.headerText !== 'Add'">
     <button matRipple mat-fab (click)="gotoAddMeetup()">
       <mat-icon class="icon-display colorWhite">add</mat-icon>
     </button>

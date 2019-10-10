@@ -18,7 +18,9 @@ export class UpcomingStorageService {
   constructor(
     private appInfo: AppStorageService,
     private http: HttpClient
-  ) {}
+  ) {
+    this.getUpcomingMeetups();
+  }
 
   getUpcomingMeetups(): void {
     if (!this.appInfo.upcomingMeetups) {
