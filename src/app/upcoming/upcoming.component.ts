@@ -5,6 +5,9 @@ import {
 import {
   AppStorageService
 } from '../app.service';
+import {
+  UpcomingStorageService
+} from './upcoming.service';
 
 @Component({
   selector: 'app-upcoming',
@@ -14,7 +17,8 @@ import {
 export class UpcomingComponent implements OnInit {
 
   constructor(
-    private appInfo: AppStorageService
+    public appInfo: AppStorageService,
+    public upcomingInfo: UpcomingStorageService
   ) {
     appInfo.headerText = 'Upcoming';
   }

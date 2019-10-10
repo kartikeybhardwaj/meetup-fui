@@ -1,12 +1,17 @@
 <div class="contentCenter">
   <!-- start - terminal -->
   <div class="terminal">
-    <pre><span class="terminalBot">meetup:</span> Let me fetch upcoming meet-ups.. This should be quick! <span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
-    <pre><span class="terminalBot">meetup:</span> And here they are..</pre>
-    <pre>01. <a>This is a meetup title</a> (Singapore) - Nov 02, '19</pre>
-    <pre>02. <a>This is another meetup title</a> (New York) - Nov 25, '19</pre>
-    <pre>03. <a>This is just another meetup title</a> (Qatar) - Dec 18, '19</pre>
-    <pre>04. <a>This is just a meetup title</a> (Bengaluru) - Dec 21, '19</pre>
+    <pre><span class="terminalBot">UPCOMING</span></pre>
+    <pre
+      *ngIf="upcomingInfo.isFetching"><span class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre *ngIf="upcomingInfo.message.length"><span class="terminalBot">meetup:</span> {{upcomingInfo.message}}</pre>
+    <pre
+      *ngIf="upcomingInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{upcomingInfo.errorMessage}}</pre>
+    <ng-container *ngIf="appInfo.upcomingMeetups">
+      <pre
+        *ngFor="let meetup of appInfo.upcomingMeetups.slice(0, 4); index as index;">0{{index + 1}}. <a [routerLink]="'../description/' + meetup._id.$oid">{{meetup.title}}</a><span *ngIf="meetup.location.country.length"> • {{meetup.location.country}}</span> • {{appInfo.getShortDate(meetup.timeline.from.$date)}}</pre>
+      <pre *ngIf="appInfo.upcomingMeetups.length > 4"><a routerLink="../upcoming">more</a></pre>
+    </ng-container>
   </div>
   <!-- end - terminal -->
 </div>
