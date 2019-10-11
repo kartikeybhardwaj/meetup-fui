@@ -8,12 +8,16 @@
   <!-- start - terminal -->
   <div class="terminal" *ngIf="!isFetchingDescription && !errorMessageFetching.length">
     <pre><span class="terminalBot">{{description.title}}</span></pre>
-    <pre>{{description.timeline.from}} - {{description.timeline.to}}</pre>
+    <pre>{{descriptionExtras.timeline.from}} - {{descriptionExtras.timeline.to}}</pre>
     <pre>{{description.description}}</pre>
     <pre><span class="terminalBot">Location:</span> <span *ngIf="!description.location.title.length">not specified</span><a class="cursorPointer" (click)="openMapDialog()" *ngIf="description.location.title.length">view on map</a></pre>
     <pre>{{descriptionExtras.peopleRegistered}} {{descriptionExtras.tense}}<span *ngIf="descriptionExtras.amIGoing">, me too!</span><a class="cursorPointer" [ngClass]="isRegistering ? 'disabled' : ''" *ngIf="!descriptionExtras.amIGoing && descriptionExtras.isRegistrationOpen" (click)="register()">, register me <span class="inlineBlock" *ngIf="isRegistering"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></a></pre>
     <pre *ngIf="errorMessage.length"><span class="terminalBotError">meetup:</span> {{errorMessage}}</pre>
     <pre *ngIf="message.length"><span class="terminalBot">meetup:</span> {{message}}</pre>
+    <pre *ngIf="!googleCalendarInfo.isAdded && descriptionExtras.amIGoing && descriptionExtras.googleCalendarMeta && !descriptionExtras.googleCalendarMeta.added"><a class="cursorPointer" (click)="addToGoogleCalendar()" [ngClass]="googleCalendarInfo.isHappening ? 'disabled' : ''">Add to my Google Calendar <span class="inlineBlock" *ngIf="googleCalendarInfo.isHappening"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></a></pre>
+    <pre *ngIf="googleCalendarInfo.errorMessage.length"><span class="terminalBotError">meetup:</span> {{googleCalendarInfo.errorMessage}}</pre>
+    <pre *ngIf="googleCalendarInfo.message.length"><span class="terminalBot">meetup:</span> {{googleCalendarInfo.message}}</pre>
+    <pre *ngIf="googleCalendarInfo.htmlLink.length"><span class="terminalBot">meetup:</span> <a [href]="googleCalendarInfo.htmlLink" target="_blank">{{googleCalendarInfo.htmlLink}}</a></pre>
   </div>
   <!-- end - terminal -->
 </div>

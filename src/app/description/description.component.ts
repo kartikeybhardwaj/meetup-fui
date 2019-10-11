@@ -19,6 +19,9 @@ import {
 import {
   HttpClient
 } from '@angular/common/http';
+import {
+  GoogleCalendarService
+} from './google.calendar.service';
 
 export interface DescriptionDialogData {
   title: string;
@@ -50,7 +53,8 @@ export class DescriptionComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     public mapDialog: MatDialog,
-    private http: HttpClient
+    private http: HttpClient,
+    private googleCalendarInfo: GoogleCalendarService
   ) {
     this.activatedRouteSnapshot = activatedRoute.snapshot;
     if (this.activatedRouteSnapshot.params && this.activatedRouteSnapshot.params.id) {
@@ -86,20 +90,30 @@ export class DescriptionComponent implements OnInit {
                 }
               }
               this.descriptionExtras.amIGoing = this.description.joinedBy.map((user) => {
-                return user.$oid === this.appInfo.user._id.$oid;
+                return user.userId.$oid === this.appInfo.user._id.$oid;
               }).includes(true);
-              this.description.timeline.from = new Date(this.description.timeline.from.$date).toString();
-              this.description.timeline.from = this.description.timeline.from.toString();
-              this.description.timeline.from =
-                this.description.timeline.from.substr(0, 3) + ',' +
-                this.description.timeline.from.substr(3, 7) + ', ' +
-                this.description.timeline.from.substr(16, 5);
-              this.description.timeline.to = new Date(this.description.timeline.to.$date).toString();
-              this.description.timeline.to = this.description.timeline.to.toString();
-              this.description.timeline.to =
-                this.description.timeline.to.substr(0, 3) + ',' +
-                this.description.timeline.to.substr(3, 7) + ', ' +
-                this.description.timeline.to.substr(16, 5);
+              this.descriptionExtras.googleCalendarMeta = this.description.joinedBy.map((meetup) => {
+                if (meetup.userId.$oid === this.appInfo.user._id.$oid) {
+                  return meetup.googleCalendarMeta;
+                }
+              });
+              if (this.descriptionExtras.googleCalendarMeta.length) {
+                this.descriptionExtras.googleCalendarMeta = this.descriptionExtras.googleCalendarMeta[0];
+                this.googleCalendarInfo.htmlLink = this.descriptionExtras.googleCalendarMeta.htmlLink;
+              }
+              this.descriptionExtras.timeline = {};
+              this.descriptionExtras.timeline.from = new Date(this.description.timeline.from.$date).toString();
+              this.descriptionExtras.timeline.from = this.descriptionExtras.timeline.from.toString();
+              this.descriptionExtras.timeline.from =
+                this.descriptionExtras.timeline.from.substr(0, 3) + ',' +
+                this.descriptionExtras.timeline.from.substr(3, 7) + ', ' +
+                this.descriptionExtras.timeline.from.substr(16, 5);
+              this.descriptionExtras.timeline.to = new Date(this.description.timeline.to.$date).toString();
+              this.descriptionExtras.timeline.to = this.descriptionExtras.timeline.to.toString();
+              this.descriptionExtras.timeline.to =
+                this.descriptionExtras.timeline.to.substr(0, 3) + ',' +
+                this.descriptionExtras.timeline.to.substr(3, 7) + ', ' +
+                this.descriptionExtras.timeline.to.substr(16, 5);
               this.appInfo.headerText = this.description.title;
             } else if (response.message) {
               this.errorMessageFetching = response.message;
@@ -148,6 +162,28 @@ export class DescriptionComponent implements OnInit {
     return {
       meetupId: this.selectedId
     };
+  }
+
+  addToGoogleCalendar(): void {
+    this.googleCalendarInfo.meetupId = this.selectedId;
+    this.googleCalendarInfo.thisEvent = {
+      summary: this.description.title,
+      location: this.description.location.title ? this.description.location.title : '',
+      description: this.description.description,
+      start: {
+        dateTime: new Date(this.description.timeline.from.$date).toISOString(),
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      },
+      end: {
+        dateTime: new Date(this.description.timeline.to.$date).toISOString(),
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      },
+      recurrence: [],
+      attendees: [],
+      visibility: 'public',
+      anyoneCanAddSelf: true
+    };
+    this.googleCalendarInfo.handleClientLoad();
   }
 
   openMapDialog(): void {
