@@ -162,6 +162,9 @@ export class AddComponent implements OnInit {
   }
 
   openMapDialog(): void {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {});
+    }
     // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.mapDialog.open(AddMapDialog, {
       maxWidth: '100%',
