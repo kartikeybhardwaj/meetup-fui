@@ -97,23 +97,22 @@ export class DescriptionComponent implements OnInit {
                   return meetup.googleCalendarMeta;
                 }
               });
-              if (this.descriptionExtras.googleCalendarMeta.length) {
+              if (this.descriptionExtras.googleCalendarMeta[0] !== undefined) {
                 this.descriptionExtras.googleCalendarMeta = this.descriptionExtras.googleCalendarMeta[0];
                 this.googleCalendarInfo.htmlLink = this.descriptionExtras.googleCalendarMeta.htmlLink;
               }
-              this.descriptionExtras.timeline = {};
-              this.descriptionExtras.timeline.from = new Date(this.description.timeline.from.$date).toString();
-              this.descriptionExtras.timeline.from = this.descriptionExtras.timeline.from.toString();
-              this.descriptionExtras.timeline.from =
-                this.descriptionExtras.timeline.from.substr(0, 3) + ',' +
-                this.descriptionExtras.timeline.from.substr(3, 7) + ', ' +
-                this.descriptionExtras.timeline.from.substr(16, 5);
-              this.descriptionExtras.timeline.to = new Date(this.description.timeline.to.$date).toString();
-              this.descriptionExtras.timeline.to = this.descriptionExtras.timeline.to.toString();
-              this.descriptionExtras.timeline.to =
-                this.descriptionExtras.timeline.to.substr(0, 3) + ',' +
-                this.descriptionExtras.timeline.to.substr(3, 7) + ', ' +
-                this.descriptionExtras.timeline.to.substr(16, 5);
+              this.descriptionExtras.from = new Date(this.description.timeline.from.$date).toString();
+              this.descriptionExtras.from = this.descriptionExtras.from.toString();
+              this.descriptionExtras.from =
+                this.descriptionExtras.from.substr(0, 3) + ',' +
+                this.descriptionExtras.from.substr(3, 7) + ', ' +
+                this.descriptionExtras.from.substr(16, 5);
+              this.descriptionExtras.to = new Date(this.description.timeline.to.$date).toString();
+              this.descriptionExtras.to = this.descriptionExtras.to.toString();
+              this.descriptionExtras.to =
+                this.descriptionExtras.to.substr(0, 3) + ',' +
+                this.descriptionExtras.to.substr(3, 7) + ', ' +
+                this.descriptionExtras.to.substr(16, 5);
               this.appInfo.headerText = this.description.title;
             } else if (response.message) {
               this.errorMessageFetching = response.message;
