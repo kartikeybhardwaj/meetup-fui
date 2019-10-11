@@ -146,7 +146,7 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBFuyIMeR22scViU6bR8LOBoAa14oSYxbg',
+      apiKey: '<YOUR_MAPS_API_KEY_GOES_HERE>',
       libraries: ['places']
     }),
     MatButtonModule,
