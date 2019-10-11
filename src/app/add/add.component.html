@@ -21,7 +21,7 @@
     <div style="height: 3px;"></div>
     <pre><span>Location (optional): </span>{{mapLat ? (mapTitle + '\nCountry: ' + mapCountry + '\nLatitude: ' + mapLat + '\nLongitude: ' + mapLng) : ''}} <a class="cursorPointer" (click)="openMapDialog()">{{mapLat ? 'edit' : 'select'}}</a> <a class="cursorPointer" (click)="removeMap()">{{mapLat ? 'remove' : ''}}</a></pre>
     <div style="height: 3px;"></div>
-    <pre><a class="cursorPointer" [ngClass]="isLoggingIn ? 'disabled' : ''" (click)="addMeetup()">Create meet-up</a> <span class="inlineBlock" *ngIf="isAdding"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre><a class="cursorPointer" [ngClass]="isAdding ? 'disabled' : ''" (click)="addMeetup()">Create meet-up</a> <span class="inlineBlock" *ngIf="isAdding"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
     <div style="height: 3px;"></div>
     <pre *ngIf="errorMessage.length"><span class="terminalBotError">meetup:</span> {{errorMessage}}</pre>
     <pre *ngIf="message.length"><span class="terminalBot">meetup:</span> {{message}}</pre>
