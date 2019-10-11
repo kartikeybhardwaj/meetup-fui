@@ -6,10 +6,10 @@
     <pre><span class="floatLeft">email: </span><span class="overflowHiddenBlock"><input type="email" class="transparentInput" [(ngModel)]="email"></span></pre>
     <pre><span class="floatLeft">password: </span><span class="overflowHiddenBlock"><input type="password" class="transparentInput" [(ngModel)]="password"></span></pre>
     <pre><span class="floatLeft">re-enter password: </span><span class="overflowHiddenBlock"><input type="password" class="transparentInput" [(ngModel)]="repassword"></span></pre>
-    <pre><a class="cursorPointer" (click)="signup()" [ngClass]="isLoggingIn ? 'disabled' : ''">Sign up</a> <span *ngIf="isSigningUp" class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
+    <pre><a class="cursorPointer" (click)="signup()" [ngClass]="isSigningUp ? 'disabled' : ''">Sign up</a> <span *ngIf="isSigningUp" class="inlineBlock"><mat-progress-spinner class="inlineBlock" color="primary" mode="indeterminate" [diameter]="14"></mat-progress-spinner></span></pre>
     <pre *ngIf="errorMessage.length"><span class="terminalBotError">meetup:</span> {{errorMessage}}</pre>
     <pre *ngIf="message.length"><span class="terminalBot">meetup:</span> {{message}}</pre>
-    <pre><a routerLink="../login" class="cursorPointer" [ngClass]="isLoggingIn ? 'disabled' : ''">Back to sign in</a></pre>
+    <pre><a routerLink="../login" class="cursorPointer" [ngClass]="isSigningUp ? 'disabled' : ''">Back to sign in</a></pre>
   </div>
   <!-- end - terminal -->
 </div>

@@ -54,7 +54,7 @@ export class DescriptionComponent implements OnInit {
     private router: Router,
     public mapDialog: MatDialog,
     private http: HttpClient,
-    private googleCalendarInfo: GoogleCalendarService
+    public googleCalendarInfo: GoogleCalendarService
   ) {
     this.activatedRouteSnapshot = activatedRoute.snapshot;
     if (this.activatedRouteSnapshot.params && this.activatedRouteSnapshot.params.id) {
