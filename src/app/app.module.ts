@@ -116,6 +116,9 @@ import {
 import {
   MyComponent
 } from './my/my.component';
+import {
+  GoogleCalendarService
+} from './description/google.calendar.service';
 
 @NgModule({
   declarations: [
@@ -143,7 +146,7 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: '',
+      apiKey: 'AIzaSyBFuyIMeR22scViU6bR8LOBoAa14oSYxbg',
       libraries: ['places']
     }),
     MatButtonModule,
@@ -166,7 +169,8 @@ import {
     UpcomingStorageService,
     PreviousStorageService,
     MyStorageService,
-    MatDatepickerModule
+    MatDatepickerModule,
+    GoogleCalendarService
   ],
   entryComponents: [
     AddMapDialog,
